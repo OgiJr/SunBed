@@ -7,7 +7,7 @@ public class ResetScript : MonoBehaviour
     public Score score;
     bool initialized = false;
 
-    string id = "3723361";
+    string id = "3723360";
 
     private void Start()
     {
@@ -31,6 +31,6 @@ public class ResetScript : MonoBehaviour
             }
 
             SceneManager.LoadScene(0);
-        }       
+        }
     }
 }

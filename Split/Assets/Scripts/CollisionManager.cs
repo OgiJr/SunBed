@@ -6,7 +6,7 @@ public class CollisionManager : MonoBehaviour
 {
     private Rigidbody rb;
     public Score score;
-    public bool touched = false;
+    public bool touched = true;
 
     public AudioSource tap;
 

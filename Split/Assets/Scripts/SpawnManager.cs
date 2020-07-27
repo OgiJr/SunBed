@@ -8,7 +8,7 @@ public class SpawnManager : MonoBehaviour
     bool cooldown = false;
     public CollisionManager colManager;
     public AudioSource click;
-    
+
     void Update()
     {
         if (colManager.touched == true)
@@ -24,7 +24,7 @@ public class SpawnManager : MonoBehaviour
                 if (plane.Raycast(ray, out distance))
                 {
                     Vector3 pos = ray.GetPoint(distance);
-                    if (pos.x > -12f && pos.x < 13)
+                    if (pos.x > -11f && pos.x < 13)
                     {
                         GameObject bedObject;
                         bedObject = Instantiate(bedPrefab[prefab]);
@@ -39,6 +39,17 @@ public class SpawnManager : MonoBehaviour
                             for (int i = 0; i < go.transform.childCount; i++)
                             {
                                 Destroy(go.transform.GetChild(i).gameObject.GetComponent<Collider>());
+                            }
+
+                            for(int x = 0; x < 5; x++){
+                              for(int y = 0; y < 5; y++){
+                                for(int z = 0; z < 5; z++){
+                                Debug.Log("hi");
+                                GameObject piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                                piece.transform.position = go.transform.position + new Vector3(0.2f * x, 0.2f * y, 0.2f * z);
+                                piece.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                                }
+                              }
                             }
 
                             go.name = "ForDestroy";
@@ -69,6 +80,21 @@ public class SpawnManager : MonoBehaviour
                         }
 
                         go.name = "ForDestroy";
+
+                        for(int x = 0; x < 6; x++){
+                          for(int y = 0; y < 3; y++){
+                            for(int z = 0; z < 3; z++){
+                            Debug.Log("hi");
+                            GameObject piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                            piece.transform.position = go.transform.position + new Vector3(0.2f * x, 0.2f * y, 0.2f * z);
+                            piece.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+                            piece.AddComponent<Rigidbody>();
+                            piece.GetComponent<Material>().color = Color.brown;
+                            pice.gameObject.name = "ForDestroy";
+                            piece.GetComponent<Rigidbody>().AddExplosiveForce(1,piece.transform.position,1,1);
+                            }
+                          }
+                        }
 
                         Invoke("DestroySunbeds", 1);
                     }
