@@ -9,16 +9,11 @@ public class ResetScript : MonoBehaviour
 
     string id = "3723360";
 
-    private void Start()
-    {
-        Advertisement.Initialize(id);
-    }
-
     void Update()
     {
         if(initialized == false)
         {
-            Advertisement.Initialize(id);
+            //Advertisement.Initialize(id);
             initialized = true;
         }
 
@@ -27,7 +22,7 @@ public class ResetScript : MonoBehaviour
             PlayerPrefs.SetInt("HighScore", score.highScore);
             if(score.score > 850)
             {
-                Advertisement.Show();
+            //    Advertisement.Show();
             }
 
             SceneManager.LoadScene(0);

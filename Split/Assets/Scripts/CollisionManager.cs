@@ -51,7 +51,8 @@ public class CollisionManager : MonoBehaviour
         if (collision.gameObject.tag == "Reverse")
         {
             score.score+= 100;
-            Time.timeScale += 0.02f;
+            if(Time.timeScale < 2.5f){
+            Time.timeScale += 0.015f;}
             if (rb.velocity.x < 0)
             {
                 rb.AddForce(-300, 350, 0);
@@ -87,7 +88,8 @@ public class CollisionManager : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Continue")
         {
-            Time.timeScale += 0.02f;
+            if(Time.timeScale < 2.5f){
+            Time.timeScale += 0.015f;}
             score.score += 100;
 
             if (rb.velocity.x < 0)

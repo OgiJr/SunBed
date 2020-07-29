@@ -8,20 +8,30 @@ public class Lose : MonoBehaviour
     public AudioSource loss;
     public bool played = false;
 
-    public GameObject reset;
     public GameObject ttpText;
     public GameObject tfr;
 
+    bool lost = false;
+    public Score score;
+
+    void Start(){
+      TinySauce.OnGameStarted();
+    }
+
     void Update()
     {
+      if(lost == false){
         if(this.gameObject.GetComponent<Rigidbody>().velocity == Vector3.zero && this.transform.position.y < 3)
         {
             LoseGame();
+            lost = true;
         }
         if (this.transform.position.x < -16 || this.transform.position.x > 16 || this.transform.position.y > 50 || this.transform.position.y < -3)
         {
             LoseGame();
+            lost = true;
         }
+      }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -33,8 +43,12 @@ public class Lose : MonoBehaviour
         }
     }
 
-    private void LoseGame()
+    public GameObject spawnManager;
+    public GameObject tapNow;
+
+    public void LoseGame()
     {
+        TinySauce.OnGameFinished(score.score);
         Time.timeScale = 1;
 
         if(tfr.activeSelf == true)
@@ -42,20 +56,18 @@ public class Lose : MonoBehaviour
             tfr.SetActive(false);
         }
 
-        Camera.main.gameObject.GetComponent<SpawnManager>().enabled = false;
-        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Sunbed"))
-        {
-            Destroy(go);
-        }
-        Debug.Log("You lose");
+        spawnManager.GetComponent<SpawnManager>().enabled = false;
+
         this.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+
         if (played == false)
         {
             loss.Play();
             played = true;
         }
 
-        reset.SetActive(true);
+        tapNow.SetActive(false);
+        this.gameObject.GetComponent<ResetScript>().enabled = true;
         ttpText.SetActive(true);
     }
 }

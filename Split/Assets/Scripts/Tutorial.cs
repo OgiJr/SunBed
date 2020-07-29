@@ -15,7 +15,7 @@ Wait();    }
 
     void Start()
     {
-            if(PlayerPrefs.GetInt("HighScore") < 2){
+            if(PlayerPrefs.GetInt("HighScore") < 200){
               tutorial = true;
             }
     }

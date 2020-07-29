@@ -42,7 +42,7 @@ public class Score : MonoBehaviour
         }
 
         scoreText.text = score.ToString();
-        highScoreText.text = "Top: " + highScore.ToString();
+        highScoreText.text = highScore.ToString();
 
         if (player.position.y > 8 && played == false)
         {
