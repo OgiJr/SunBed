@@ -25,7 +25,7 @@ public class ResetScript : MonoBehaviour
         if (Input.touchCount > 0 || Input.GetMouseButton(0))
         {
             PlayerPrefs.SetInt("HighScore", score.highScore);
-            if(score.score > 8)
+            if(score.score > 850)
             {
                 Advertisement.Show();
             }

@@ -6,10 +6,11 @@ public class Lose : MonoBehaviour
 {
     public AudioSource tap;
     public AudioSource loss;
-    bool played = false;
+    public bool played = false;
 
     public GameObject reset;
     public GameObject ttpText;
+    public GameObject tfr;
 
     void Update()
     {
@@ -17,7 +18,7 @@ public class Lose : MonoBehaviour
         {
             LoseGame();
         }
-        if (this.transform.position.x < -16 || this.transform.position.x > 16 || this.transform.position.y > 30 || this.transform.position.y < -3)
+        if (this.transform.position.x < -16 || this.transform.position.x > 16 || this.transform.position.y > 50 || this.transform.position.y < -3)
         {
             LoseGame();
         }
@@ -34,6 +35,13 @@ public class Lose : MonoBehaviour
 
     private void LoseGame()
     {
+        Time.timeScale = 1;
+
+        if(tfr.activeSelf == true)
+        {
+            tfr.SetActive(false);
+        }
+
         Camera.main.gameObject.GetComponent<SpawnManager>().enabled = false;
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Sunbed"))
         {
